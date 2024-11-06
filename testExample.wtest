@@ -1,9 +1,20 @@
-import example.pepita
+import mutual.*
 
-describe "group of tests for pepita" {
+describe "Test de mutual" {
 
-  test "pepita has initial energy" {
-    assert.equals(100, pepita.energy())
+  const excursionCiudad1 = new ExcursionACiudad(idiomas=["español"], cantidadAtracciones = 4)
+  const excursionTropical1 = new ExcursionTropical(idiomas=["ingles"], cantidadAtracciones = 4)
+  test "una excursión a ciudad normal (no tropical) en la que se visitan 4 atracciones,
+  lleva 2 días, no implica esfuerzo, y no sirve para broncearse." {
+    assert.equals(2, excursionCiudad1.dias())
+    assert.notThat(excursionCiudad1.implicaEsfuerzo())
+    assert.notThat(excursionCiudad1.sirveParaBroncearse())
   }
 
+  test "una excursión a ciudad tropical en la que se visitan 4 atracciones, lleva 3 días,
+  no implica esfuerzo, y sí sirve para broncearse." {
+    assert.equals(3, excursionTropical1.dias())
+    assert.notThat(excursionTropical1.implicaEsfuerzo())
+    assert.that(excursionTropical1.sirveParaBroncearse())     
+  }
 }
